@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "like-to-discover"
+version = "0.1.0"
+description = "Have every liked song in your Discover Weekly put into a playlist called \"Like to Discover\""
+authors = ["Michael Doyle <michaeldoyle1994@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    { include = "l2d" },
+]
+
+[tool.poetry.scripts]
+l2d = "l2d.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+spotipy = "^2.24.0"
+typer = {extras = ["all"], version = "^0.12.3"}
+python-dotenv = "^1.0.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+flake8 = "^7.1.0"
+isort = "^5.13.2"
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 90
+target-version = ['py312']
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
