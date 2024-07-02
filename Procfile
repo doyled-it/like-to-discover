@@ -1,1 +1,1 @@
-l2d: l2d run
+l2d: python -m l2d run
