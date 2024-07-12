@@ -225,4 +225,4 @@ Feel free to open issues or submit pull requests if you find bugs or want to con
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the Apache 2.0 License.
