@@ -46,3 +46,13 @@ def run():
         log.info(f"Added {len(songs_to_add)} songs to the target playlist.")
     else:
         log.info("No new songs to add.")
+
+
+@app.command(help="Remove all of the duplicate songs from the target playlist")
+def remove_duplicates():
+    """Remove all of the duplicate songs from the target playlist"""
+    like_to_discover_tracks = get_like_to_discover_songs()
+    sp.playlist_replace_items(TARGET_PLAYLIST_ID, [])
+    for i in range(0, len(like_to_discover_tracks), 100):
+        sp.playlist_add_items(TARGET_PLAYLIST_ID, like_to_discover_tracks[i : i + 100])
+    log.info("Removed all duplicates from the target playlist.")

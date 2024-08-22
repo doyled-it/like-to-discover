@@ -38,7 +38,7 @@ def get_liked_songs() -> list[str]:
     Returns:
         list[str]: A list of the user's liked songs.
     """
-    results = sp.current_user_saved_tracks(limit=50)
+    results = sp.current_user_saved_tracks(limit=100)
     liked_tracks = []
     for item in results["items"]:
         track = item["track"]
@@ -67,9 +67,15 @@ def get_like_to_discover_songs() -> list[str]:
     Returns:
         list[str]: A list of the user's Like to Discover songs
     """
-    results = sp.playlist_items(TARGET_PLAYLIST_ID)
+    offset = 0
     like_to_discover_tracks = []
-    for item in results["items"]:
-        track = item["track"]
-        like_to_discover_tracks.append(track["id"])
+    while True:
+        results = sp.playlist_items(TARGET_PLAYLIST_ID, offset=offset, limit=100)
+        if not results["items"]:
+            break
+        offset += 100
+        for item in results["items"]:
+            track = item["track"]
+            like_to_discover_tracks.append(track["id"])
+
     return like_to_discover_tracks
