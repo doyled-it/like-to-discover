@@ -38,7 +38,7 @@ def get_liked_songs() -> list[str]:
     Returns:
         list[str]: A list of the user's liked songs.
     """
-    results = sp.current_user_saved_tracks(limit=100)
+    results = sp.current_user_saved_tracks(limit=50)
     liked_tracks = []
     for item in results["items"]:
         track = item["track"]
